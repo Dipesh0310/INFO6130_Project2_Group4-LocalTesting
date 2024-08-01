@@ -1,6 +1,7 @@
 package jlin2.examples.localtesting
 
 import org.junit.Assert.assertTrue
+import org.junit.Assert.assertFalse
 import org.junit.Test
 
 class EmailValidatorTest {
@@ -13,6 +14,16 @@ class EmailValidatorTest {
     @Test
     fun testEmailValidator_CorrectEmailSubDomain_ReturnsTrue() {
         assertTrue(EmailValidator.isValidEmail("123@abc.co.ca"))
+    }
+
+    @Test
+    fun testEmailValidator_InvalidEmailNoDomain_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("123@abc"))
+    }
+
+    @Test
+    fun testEmailValidator_InvalidEmailDoubleDots_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("123@abc..com"))
     }
 
     @Test
