@@ -73,6 +73,42 @@ class EmailValidatorInstrumentedTest {
     }
 
     @Test
+    fun testEmailValidator_InvalidEmailNoDomain_ReturnsFalse() {
+        val invalidEmailNoDomain = "123@abc"
+        val userName = "Parshant Gurung"
+        val year = 2001
+        val month = 5
+        val day = 20
+
+        onView(withId(R.id.userNameInput)).perform(clearText(), typeText(userName), closeSoftKeyboard())
+        onView(withId(R.id.emailInput)).perform(clearText(), typeText(invalidEmailNoDomain), closeSoftKeyboard())
+        onView(withId(R.id.dateOfBirthInput)).perform(setDate(year, month, day))
+
+        onView(withId(R.id.saveButton)).perform(click())
+
+      
+        onView(withId(R.id.emailInput)).check(matches(hasErrorText("Invalid email")))
+    }
+
+    @Test
+    fun testEmailValidator_InvalidEmailDoubleDots_ReturnsFalse() {
+        val invalidEmailDoubleDots = "123@abc..com"
+        val userName = "Parshant Gurung"
+        val year = 2001
+        val month = 5
+        val day = 20
+
+        onView(withId(R.id.userNameInput)).perform(clearText(), typeText(userName), closeSoftKeyboard())
+        onView(withId(R.id.emailInput)).perform(clearText(), typeText(invalidEmailDoubleDots), closeSoftKeyboard())
+        onView(withId(R.id.dateOfBirthInput)).perform(setDate(year, month, day))
+
+        onView(withId(R.id.saveButton)).perform(click())
+
+    
+        onView(withId(R.id.emailInput)).check(matches(hasErrorText("Invalid email")))
+    }
+
+    @Test
     fun testEmailValidator_EmptyString_ReturnsFalse() {
         val emptyString = ""
         val userName = "Autsav Adhikari"
