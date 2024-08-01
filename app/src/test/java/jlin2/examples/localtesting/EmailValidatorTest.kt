@@ -15,6 +15,16 @@ class EmailValidatorTest {
         assertTrue(EmailValidator.isValidEmail("123@abc.co.ca"))
     }
 
+    @Test
+    fun testEmailValidator_EmptyString_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail(""))
+    }
+
+    @Test
+    fun testEmailValidator_Null_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail(null))
+    }
+
 
 
 

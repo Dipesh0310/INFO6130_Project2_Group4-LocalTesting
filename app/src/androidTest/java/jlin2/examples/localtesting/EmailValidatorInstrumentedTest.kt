@@ -72,6 +72,40 @@ class EmailValidatorInstrumentedTest {
         onView(withId(R.id.emailInput)).check(matches(withText(correctSubdomainEmail)))
     }
 
+    @Test
+    fun testEmailValidator_EmptyString_ReturnsFalse() {
+        val emptyString = ""
+        val userName = "Autsav Adhikari"
+        val year = 2002
+        val month = 2 
+        val day = 30
+
+        onView(withId(R.id.userNameInput)).perform(clearText(), typeText(userName), closeSoftKeyboard())
+        onView(withId(R.id.emailInput)).perform(clearText(), typeText(emptyString), closeSoftKeyboard())
+        onView(withId(R.id.dateOfBirthInput)).perform(setDate(year, month, day))
+
+        onView(withId(R.id.saveButton)).perform(click())
+
+        onView(withId(R.id.emailInput)).check(matches(hasErrorText("Invalid email")))
+    }
+
+    @Test
+    fun testEmailValidator_Null_ReturnsFalse() {
+        val nullString: String? = null
+        val userName = "Autsav Adhikari"
+        val year = 2002
+        val month = 2
+        val day = 30
+
+        onView(withId(R.id.userNameInput)).perform(clearText(), typeText(userName), closeSoftKeyboard())
+        onView(withId(R.id.emailInput)).perform(clearText(), typeText(nullString ?: ""), closeSoftKeyboard())
+        onView(withId(R.id.dateOfBirthInput)).perform(setDate(year, month, day))
+
+        onView(withId(R.id.saveButton)).perform(click())
+
+        onView(withId(R.id.emailInput)).check(matches(hasErrorText("Invalid email")))
+    }
+
 
 
 
