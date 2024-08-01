@@ -72,42 +72,6 @@ class EmailValidatorInstrumentedTest {
         onView(withId(R.id.emailInput)).check(matches(withText(correctSubdomainEmail)))
     }
 
-@Test
-    fun testEmailValidator_InvalidEmailNoUsername_ReturnsFalse() {
-        val invalidEmailNoUsername = "@abc.com"
-        val userName = "Anjila Gurung"
-        val year = 2000
-        val month = 12 
-        val day = 23
-
-        onView(withId(R.id.userNameInput)).perform(clearText(), typeText(userName), closeSoftKeyboard())
-        onView(withId(R.id.emailInput)).perform(clearText(), typeText(invalidEmailNoUsername), closeSoftKeyboard())
-        onView(withId(R.id.dateOfBirthInput)).perform(setDate(year, month, day))
-
-        onView(withId(R.id.saveButton)).perform(click())
-
-       
-        onView(withId(R.id.emailInput)).check(matches(hasErrorText("Invalid email")))
-    }
-
-    @Test
-    fun testEmailValidator_InvalidEmailNoAtSymbol_ReturnsFalse() {
-        val invalidEmailNoAtSymbol = "testing123"
-        val userName = "Anjila Gurung"
-        val year = 2000
-        val month = 12
-        val day = 23
-
-        onView(withId(R.id.userNameInput)).perform(clearText(), typeText(userName), closeSoftKeyboard())
-        onView(withId(R.id.emailInput)).perform(clearText(), typeText(invalidEmailNoAtSymbol), closeSoftKeyboard())
-        onView(withId(R.id.dateOfBirthInput)).perform(setDate(year, month, day))
-
-        onView(withId(R.id.saveButton)).perform(click())
-
-    
-        onView(withId(R.id.emailInput)).check(matches(hasErrorText("Invalid email")))
-    }
-
 
     @Test
     fun testEmailValidator_InvalidEmailNoDomain_ReturnsFalse() {
@@ -144,6 +108,44 @@ class EmailValidatorInstrumentedTest {
     
         onView(withId(R.id.emailInput)).check(matches(hasErrorText("Invalid email")))
     }
+
+    @Test
+    fun testEmailValidator_InvalidEmailNoUsername_ReturnsFalse() {
+        val invalidEmailNoUsername = "@abc.com"
+        val userName = "Anjila Gurung"
+        val year = 2000
+        val month = 12 
+        val day = 23
+
+        onView(withId(R.id.userNameInput)).perform(clearText(), typeText(userName), closeSoftKeyboard())
+        onView(withId(R.id.emailInput)).perform(clearText(), typeText(invalidEmailNoUsername), closeSoftKeyboard())
+        onView(withId(R.id.dateOfBirthInput)).perform(setDate(year, month, day))
+
+        onView(withId(R.id.saveButton)).perform(click())
+
+       
+        onView(withId(R.id.emailInput)).check(matches(hasErrorText("Invalid email")))
+    }
+
+    @Test
+    fun testEmailValidator_InvalidEmailNoAtSymbol_ReturnsFalse() {
+        val invalidEmailNoAtSymbol = "testing123"
+        val userName = "Anjila Gurung"
+        val year = 2000
+        val month = 12
+        val day = 23
+
+        onView(withId(R.id.userNameInput)).perform(clearText(), typeText(userName), closeSoftKeyboard())
+        onView(withId(R.id.emailInput)).perform(clearText(), typeText(invalidEmailNoAtSymbol), closeSoftKeyboard())
+        onView(withId(R.id.dateOfBirthInput)).perform(setDate(year, month, day))
+
+        onView(withId(R.id.saveButton)).perform(click())
+
+    
+        onView(withId(R.id.emailInput)).check(matches(hasErrorText("Invalid email")))
+    }
+
+
 
     @Test
     fun testEmailValidator_EmptyString_ReturnsFalse() {

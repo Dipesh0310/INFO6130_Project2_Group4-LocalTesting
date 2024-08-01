@@ -26,16 +26,8 @@ class EmailValidatorTest {
         assertFalse(EmailValidator.isValidEmail("123@abc..com"))
     }
 
-    @Test
-    fun testEmailValidator_EmptyString_ReturnsFalse() {
-        assertFalse(EmailValidator.isValidEmail(""))
-    }
 
-    @Test
-    fun testEmailValidator_Null_ReturnsFalse() {
-        assertFalse(EmailValidator.isValidEmail(null))
-    }
-    @Test
+  @Test
     fun testEmailValidator_InvalidEmailNoUsername_ReturnsFalse() {
         assertFalse(EmailValidator.isValidEmail("@abc.com"))
     }
@@ -46,6 +38,14 @@ class EmailValidatorTest {
     }
 
 
+    @Test
+    fun testEmailValidator_EmptyString_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail(""))
+    }
 
+    @Test
+    fun testEmailValidator_Null_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail(null))
+    }
 
 }
